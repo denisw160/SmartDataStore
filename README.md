@@ -1,2 +1,2 @@
 # SmartDataStore
-An extended data store for accelerating small IoT projects
+An extendable data store for accelerating small IoT projects
