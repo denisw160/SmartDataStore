@@ -1,27 +1,57 @@
-# DatastoreApp
+## SmartDataStoreApp
+
+### Description
+
+This the web frontend of the SmartDataStoreApp. TODO...
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+UI is using Bootstrap.
 
-## Development server
+### Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Development server
 
-## Code scaffolding
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload 
+if you change any of the source files.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The backend service runs `http://localhost:8080/`. ng serve will redirect all requests .../api to this
+service.
 
-## Build
+#### Code scaffolding
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng generate component component-name` to generate a new component. You can also use
+`ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Running unit tests
+#### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
+Use the `--prod` flag for a production build.
+
+#### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+#### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+#### Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the 
+[Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+### Scripts
+The run script can be used to build and start the server on the local console (for development).
+
+    bash>run.sh
+
+For clean and building the service the following scripts can be used.
+
+    bash>clean.sh
+    bash>build.sh [/yourPath/]
+
+With the optional parameter `/yourPath/` you can change the base-href of the Angular App.
+
+To start the Docker build, execute this script
+
+    bash>docker_build.sh [/yourPath/]

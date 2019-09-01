@@ -1,10 +1,11 @@
 {
   "name": "datastore-app",
-  "version": "0.0.0",
+  "version": "0.0.1-SNAPSHOTZ",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "mockup": "ng serve --configuration=mock",
+    "build": "ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
