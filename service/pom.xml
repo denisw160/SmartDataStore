@@ -14,7 +14,7 @@
 
     <!-- Project -->
     <groupId>me.wirries.smartdatastore</groupId>
-    <artifactId>service</artifactId>
+    <artifactId>datastore-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <!-- Description -->
@@ -57,7 +57,7 @@
     <!-- Build Configuration -->
     <build>
         <!-- Set artifact name -->
-        <finalName>${project.name}</finalName>
+        <finalName>${project.artifactId}</finalName>
 
         <!-- Resources of the application / @xxxxx@ instead of ${xxxxx} -->
         <resources>
