@@ -1,0 +1,26 @@
+### Spring Boot Configuration ###
+spring:
+  # Data Configuration for MongoDB
+  data:
+    mongodb:
+      host: localhost
+      database: smartdatastore
+      port: 27017
+
+  # Spring Session Configuration
+  session:
+    timeout: 1m
+
+# Logging - alternative you can use logback with log rotation
+logging.file: datastore-service.log
+logging:
+  file:
+    max-size: 5MB
+    max-history: 10
+  level:
+    root: WARN
+    org.springframework: INFO
+    me.wirries.smartdatastore: INFO
+
+## Application Configuration
+# You can override this parameter with the program arguments
