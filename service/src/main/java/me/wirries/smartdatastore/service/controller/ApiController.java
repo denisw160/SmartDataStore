@@ -1,14 +1,20 @@
 package me.wirries.smartdatastore.service.controller;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import me.wirries.smartdatastore.service.model.LoginResult;
+import me.wirries.smartdatastore.service.model.User;
+import me.wirries.smartdatastore.service.repo.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * This is the REST controller for the api of the coffee service.
@@ -18,11 +24,15 @@ import java.security.Principal;
  * @version 1.0
  * @since 08.09.2018
  */
+@Api(value = "REST API")
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiController.class);
+
+    @Autowired
+    private UserRepository userRepository;
 
 //    private SecurityConfiguration securityConfiguration;
 //
@@ -52,6 +62,10 @@ public class ApiController {
      * @param principal {@link Principal} of the current login
      * @return result of the login
      */
+    @ApiOperation(
+            value = "Perform the login",
+            notes = "Return the state of the login. If the login ist success, the field success is true."
+    )
     @GetMapping("/login")
     public LoginResult login(Principal principal) {
         if (principal == null) {
@@ -59,6 +73,15 @@ public class ApiController {
         }
 
         return new LoginResult(principal.getName(), true);
+    }
+
+    @ApiOperation(
+            value = "Get all users",
+            notes = "Return all users from the database."
+    )
+    @GetMapping("/users")
+    public List<User> users() {
+        return userRepository.findAll();
     }
 
 //    /**

@@ -25,5 +25,6 @@ logging:
 ## Application Configuration
 # You can override this parameter with the program arguments
 app:
+  version: @project.version@
   security:
     logSessions: true
