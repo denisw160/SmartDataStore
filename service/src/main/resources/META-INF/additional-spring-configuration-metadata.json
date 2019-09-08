@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "app.security.logSessions",
+      "type": "java.lang.Boolean",
+      "description": "Turn on/off of the reporting of active sessions."
+    }
+  ]
+}

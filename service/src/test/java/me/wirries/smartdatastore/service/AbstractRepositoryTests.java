@@ -1,5 +1,6 @@
 package me.wirries.smartdatastore.service;
 
+import me.wirries.smartdatastore.service.model.User;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,8 +19,9 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
     }
 
     @Before
-    public void setUp() {
-        // drop and create data
+    public void setUp() throws Exception {
+        // drop data
+        getTemplate().dropCollection(User.class);
     }
 
 }

@@ -24,3 +24,6 @@ logging:
 
 ## Application Configuration
 # You can override this parameter with the program arguments
+app:
+  security:
+    logSessions: true
