@@ -36,7 +36,10 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.debug("Load user {} from database", username);
         User user = repository.findByUserId(username);
-        if (user == null) throw new UsernameNotFoundException(String.format("Username [%s] not found", username));
+        if (user == null) {
+            LOGGER.debug("User {} not found in database", username);
+            throw new UsernameNotFoundException(String.format("Username [%s] not found", username));
+        }
 
         LOGGER.debug("Found: {}", user);
         return user;

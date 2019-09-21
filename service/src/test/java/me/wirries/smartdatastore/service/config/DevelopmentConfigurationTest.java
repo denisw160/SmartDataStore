@@ -3,7 +3,6 @@ package me.wirries.smartdatastore.service.config;
 import me.wirries.smartdatastore.service.AbstractRepositoryTests;
 import me.wirries.smartdatastore.service.model.User;
 import me.wirries.smartdatastore.service.repo.UserRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,9 +24,8 @@ public class DevelopmentConfigurationTest extends AbstractRepositoryTests {
     private DevelopmentConfiguration developmentConfiguration;
 
     @Override
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
+    public void setUp() {
+        getTemplate().dropCollection(User.class);
         developmentConfiguration = new DevelopmentConfiguration(userRepository);
     }
 

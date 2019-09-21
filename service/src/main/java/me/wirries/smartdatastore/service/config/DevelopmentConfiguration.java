@@ -48,7 +48,7 @@ public class DevelopmentConfiguration {
     private void createUser() throws Exception {
         LOGGER.info("Creating default user");
         User user = new User();
-        user.setUserId(UUID.randomUUID().toString());
+        user.setId(UUID.randomUUID().toString());
         user.setUserId("admin");
         user.updatePassword("password");
         user.setCreated(new Date());

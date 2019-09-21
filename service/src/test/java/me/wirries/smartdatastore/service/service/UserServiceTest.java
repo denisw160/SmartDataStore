@@ -3,7 +3,6 @@ package me.wirries.smartdatastore.service.service;
 import me.wirries.smartdatastore.service.AbstractRepositoryTests;
 import me.wirries.smartdatastore.service.model.*;
 import me.wirries.smartdatastore.service.repo.UserRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +31,6 @@ public class UserServiceTest extends AbstractRepositoryTests {
     private UserService userService;
 
     @Override
-    @Before
     public void setUp() throws Exception {
         super.setUp();
 

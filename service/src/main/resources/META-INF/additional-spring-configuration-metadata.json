@@ -9,6 +9,26 @@
       "name": "app.security.logSessions",
       "type": "java.lang.Boolean",
       "description": "Turn on/off of the reporting of active sessions."
+    },
+    {
+      "name": "app.mqtt-broker.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable/disable the embedded mqtt broker."
+    },
+    {
+      "name": "app.mqtt-broker.bind",
+      "type": "java.lang.String",
+      "description": "IP-address for binding the mqtt broker."
+    },
+    {
+      "name": "app.mqtt-broker.port",
+      "type": "java.lang.Integer",
+      "description": "Port number for the mqtt broker."
+    },
+    {
+      "name": "app.mqtt-broker.websocket-port",
+      "type": "java.lang.Integer",
+      "description": "Port number for websocket connections."
     }
   ]
 }

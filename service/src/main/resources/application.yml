@@ -21,7 +21,7 @@ logging:
   level:
     root: WARN
     org.springframework: INFO
-    me.wirries.smartdatastore: INFO
+    me.wirries.smartdatastore: DEBUG
 
 ## Application Configuration
 # You can override this parameter with the program arguments
@@ -29,3 +29,8 @@ app:
   version: @project.version@
   security:
     logSessions: true
+  mqtt-broker:
+    enabled: true
+    bind: 0.0.0.0
+    port: 1884
+    websocket-port: 8084
