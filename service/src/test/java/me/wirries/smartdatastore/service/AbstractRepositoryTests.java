@@ -37,7 +37,7 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
 
         // create data
 
-        LOGGER.debug("Creating default user");
+        LOGGER.debug("Creating admin user");
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setUserId("admin");
@@ -58,6 +58,21 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
         permissionList.add(Permission.createMqttTopicPermission("topicReadWrite", PermissionType.READWRITE));
 
         user.updatePermission(permissionList);
+        getTemplate().save(user);
+
+        LOGGER.debug("Creating normal user");
+        user = new User();
+        user.setId(UUID.randomUUID().toString());
+        user.setUserId("user");
+        user.updatePassword("pwd");
+        user.setCreated(new Date());
+
+        roleList = new ArrayList<>(); // TODO Setup
+        user.updateRoles(roleList);
+
+        permissionList = new ArrayList<>(); // TODO Setup
+        user.updatePermission(permissionList);
+
         getTemplate().save(user);
     }
 

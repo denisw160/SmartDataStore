@@ -121,6 +121,18 @@ public class MoquetteServerTest extends AbstractRepositoryTests {
         fail("Connection should failed for this client: " + client);
     }
 
+    @Test(expected = MqttException.class)
+    public void missingRole() throws Exception {
+        server.start();
+
+        String broker = "tcp://" + BIND + ":" + SERVER_PORT;
+        String user = "user";
+        String password = "pwd";
+
+        MqttClient client = connect(broker, user, password);
+        fail("Connection should failed for this client: " + client);
+    }
+
     /**
      * Create the mqtt client and connect.
      */
