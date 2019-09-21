@@ -13,23 +13,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Permission {
 
     private String messageId;
+    private String topic;
     private PermissionType type;
+    private ResourceType resource;
 
     /**
      * Default constructor.
      */
     public Permission() {
-    }
-
-    /**
-     * Constructor with the fields.
-     *
-     * @param messageId Id of the message
-     * @param type      type of the permission
-     */
-    public Permission(String messageId, PermissionType type) {
-        this.messageId = messageId;
-        this.type = type;
     }
 
     public String getMessageId() {
@@ -40,12 +31,28 @@ public class Permission {
         this.messageId = messageId;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     public PermissionType getType() {
         return type;
     }
 
     public void setType(PermissionType type) {
         this.type = type;
+    }
+
+    public ResourceType getResource() {
+        return resource;
+    }
+
+    public void setResource(ResourceType resource) {
+        this.resource = resource;
     }
 
     /**
@@ -68,11 +75,43 @@ public class Permission {
         return PermissionType.WRITE.equals(type) || PermissionType.READWRITE.equals(type);
     }
 
+    /**
+     * Creates a {@link Permission} for a messageId.
+     *
+     * @param messageId Id of the message
+     * @param type      type of the permission
+     * @return Permission for a messageId
+     */
+    public static Permission createMessageIdPermission(String messageId, PermissionType type) {
+        Permission permission = new Permission();
+        permission.setMessageId(messageId);
+        permission.setType(type);
+        permission.setResource(ResourceType.WEB);
+        return permission;
+    }
+
+    /**
+     * Creates a {@link Permission} for a MQTT topic.
+     *
+     * @param topic topic of the mqtt
+     * @param type  type of the permission
+     * @return Permission for a topic
+     */
+    public static Permission createMqttTopicPermission(String topic, PermissionType type) {
+        Permission permission = new Permission();
+        permission.setTopic(topic);
+        permission.setType(type);
+        permission.setResource(ResourceType.MQTT);
+        return permission;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("messageId", messageId)
+                .append("topic", topic)
                 .append("type", type)
+                .append("resource", resource)
                 .toString();
     }
 

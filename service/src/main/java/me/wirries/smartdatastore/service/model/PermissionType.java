@@ -1,7 +1,7 @@
 package me.wirries.smartdatastore.service.model;
 
 /**
- * This enum has the type of a {@link Permission}.
+ * This enum has the types of a {@link Permission}.
  *
  * @author denisw
  * @version 1.0

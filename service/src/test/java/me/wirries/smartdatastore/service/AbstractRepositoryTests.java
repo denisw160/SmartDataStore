@@ -1,6 +1,7 @@
 package me.wirries.smartdatastore.service;
 
 import me.wirries.smartdatastore.service.model.Permission;
+import me.wirries.smartdatastore.service.model.PermissionType;
 import me.wirries.smartdatastore.service.model.Role;
 import me.wirries.smartdatastore.service.model.User;
 import org.junit.Before;
@@ -47,7 +48,14 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
         user.updateRoles(roleList);
 
         List<Permission> permissionList = new ArrayList<>();
-        // TODO Add permissions
+        permissionList.add(Permission.createMessageIdPermission("messageIdRead", PermissionType.READ));
+        permissionList.add(Permission.createMessageIdPermission("messageIdWrite", PermissionType.WRITE));
+        permissionList.add(Permission.createMessageIdPermission("messageIdReadWrite", PermissionType.READWRITE));
+
+        permissionList.add(Permission.createMqttTopicPermission("topicRead", PermissionType.READ));
+        permissionList.add(Permission.createMqttTopicPermission("topicWrite", PermissionType.WRITE));
+        permissionList.add(Permission.createMqttTopicPermission("topicReadWrite", PermissionType.READWRITE));
+
         user.updatePermission(permissionList);
         getTemplate().save(user);
     }

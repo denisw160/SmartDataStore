@@ -88,13 +88,13 @@ public class UserTest {
         assertNull(user.getUpdated());
 
         List<Permission> permissionList = new ArrayList<>();
-        permissionList.add(new Permission("messageId1", PermissionType.READ));
-        permissionList.add(new Permission("messageId2", PermissionType.WRITE));
-        permissionList.add(new Permission("messageId3", PermissionType.READWRITE));
+        permissionList.add(Permission.createMessageIdPermission("messageId1", PermissionType.READ));
+        permissionList.add(Permission.createMessageIdPermission("messageId2", PermissionType.WRITE));
+        permissionList.add(Permission.createMessageIdPermission("messageId3", PermissionType.READWRITE));
 
         user.updatePermission(permissionList);
         assertNotNull(user.getPermissions());
-        assertEquals("[{\"messageId\":\"messageId1\",\"type\":\"READ\"},{\"messageId\":\"messageId2\",\"type\":\"WRITE\"},{\"messageId\":\"messageId3\",\"type\":\"READWRITE\"}]", user.getPermissions());
+        assertEquals("[{\"messageId\":\"messageId1\",\"topic\":null,\"type\":\"READ\",\"resource\":\"WEB\"},{\"messageId\":\"messageId2\",\"topic\":null,\"type\":\"WRITE\",\"resource\":\"WEB\"},{\"messageId\":\"messageId3\",\"topic\":null,\"type\":\"READWRITE\",\"resource\":\"WEB\"}]", user.getPermissions());
         assertNotNull(user.getUpdated());
     }
 

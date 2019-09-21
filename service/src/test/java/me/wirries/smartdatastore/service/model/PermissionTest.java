@@ -3,8 +3,7 @@ package me.wirries.smartdatastore.service.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Testcase for {@link Permission}.
@@ -21,13 +20,15 @@ public class PermissionTest {
 
     @Before
     public void setUp() {
-        read = new Permission("id", PermissionType.READ);
-        write = new Permission("id", PermissionType.WRITE);
-        readWrite = new Permission("id", PermissionType.READWRITE);
+        read = Permission.createMessageIdPermission("id", PermissionType.READ);
+        write = Permission.createMessageIdPermission("id", PermissionType.WRITE);
+        readWrite = Permission.createMessageIdPermission("id", PermissionType.READWRITE);
     }
 
     @Test
     public void isRead() {
+        assertEquals(ResourceType.WEB, read.getResource());
+
         assertTrue(read.isRead());
         assertFalse(write.isRead());
         assertTrue(readWrite.isRead());
@@ -35,6 +36,23 @@ public class PermissionTest {
 
     @Test
     public void isWrite() {
+        assertFalse(read.isWrite());
+        assertTrue(write.isWrite());
+        assertTrue(readWrite.isWrite());
+    }
+
+    @Test
+    public void mqtt() {
+        read = Permission.createMqttTopicPermission("topic", PermissionType.READ);
+        write = Permission.createMqttTopicPermission("topic", PermissionType.WRITE);
+        readWrite = Permission.createMqttTopicPermission("topic", PermissionType.READWRITE);
+
+        assertEquals(ResourceType.MQTT, read.getResource());
+
+        assertTrue(read.isRead());
+        assertFalse(write.isRead());
+        assertTrue(readWrite.isRead());
+
         assertFalse(read.isWrite());
         assertTrue(write.isWrite());
         assertTrue(readWrite.isWrite());
