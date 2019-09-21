@@ -219,10 +219,10 @@
             </properties>
             <dependencies>
                 <!-- Use a local database -->
-                <!--                <dependency>-->
-                <!--                    <groupId>de.flapdoodle.embed</groupId>-->
-                <!--                    <artifactId>de.flapdoodle.embed.mongo</artifactId>-->
-                <!--                </dependency>-->
+                <dependency>
+                    <groupId>de.flapdoodle.embed</groupId>
+                    <artifactId>de.flapdoodle.embed.mongo</artifactId>
+                </dependency>
                 <!-- Add additional functions for development -->
                 <dependency>
                     <groupId>org.springframework.boot</groupId>

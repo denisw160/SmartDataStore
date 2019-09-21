@@ -1,11 +1,12 @@
 ### Spring Boot Configuration ###
 spring:
   # Data Configuration for MongoDB
+  # embedded configuration
+  # https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-mongo-embedded
   data:
     mongodb:
-      host: localhost
+      port: 0
       database: smartdatastore
-      port: 27017
 
   # Spring Session Configuration
   session:
