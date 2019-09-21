@@ -56,6 +56,16 @@ public class Role implements GrantedAuthority {
                 .isEquals();
     }
 
+    /**
+     * Creates a new role with the given name.
+     *
+     * @param name name of the role
+     * @return a {@link Role}
+     */
+    public static Role createRole(String name) {
+        return new Role(name);
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)

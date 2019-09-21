@@ -9,6 +9,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import static me.wirries.smartdatastore.service.utils.AuthorityHelper.hasRole;
+
+
 /**
  * A wrapper for use the Spring {@link me.wirries.smartdatastore.service.service.UserService}
  * to check the authentication of the user.
@@ -32,7 +35,7 @@ public class SpringAuthenticationWrapper implements IAuthenticator {
             Authentication authenticate = authenticationProvider.authenticate(authentication);
 
             LOGGER.info("Client login for clientId {} and username {} is authenticated", clientId, username);
-            return authenticate.isAuthenticated();
+            return authenticate.isAuthenticated() && hasRole("ROLE_MQTT", authenticate.getAuthorities());
         } catch (Exception e) {
             LOGGER.warn("Client login for clientId {} and username {} failed", clientId, username);
             LOGGER.debug("Exception during login", e);

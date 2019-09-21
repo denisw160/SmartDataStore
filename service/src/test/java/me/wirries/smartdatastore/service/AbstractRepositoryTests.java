@@ -45,6 +45,7 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
         user.setCreated(new Date());
 
         List<Role> roleList = new ArrayList<>();
+        roleList.add(Role.createRole("ROLE_MQTT"));
         user.updateRoles(roleList);
 
         List<Permission> permissionList = new ArrayList<>();
