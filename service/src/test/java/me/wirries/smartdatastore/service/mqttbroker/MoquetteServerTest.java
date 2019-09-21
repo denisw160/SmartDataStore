@@ -59,7 +59,7 @@ public class MoquetteServerTest extends AbstractRepositoryTests {
 
         String broker = "tcp://" + BIND + ":" + SERVER_PORT;
         String content = "ping";
-        String topic = "test";
+        String topic = "topicReadWrite";
         String user = "admin";
         String password = "password";
 
@@ -131,6 +131,51 @@ public class MoquetteServerTest extends AbstractRepositoryTests {
 
         MqttClient client = connect(broker, user, password);
         fail("Connection should failed for this client: " + client);
+    }
+
+    @Test(expected = MqttException.class)
+    public void missingPermissionWrite() throws Exception {
+        server.start();
+
+        String broker = "tcp://" + BIND + ":" + SERVER_PORT;
+        String content = "ping";
+        String topic = "topicRead";
+        String user = "admin";
+        String password = "password";
+
+        MqttClient client = connect(broker, user, password);
+        client.setTimeToWait(500);
+
+        LOGGER.info("Publishing message: {}", content);
+        MqttMessage message = new MqttMessage(content.getBytes());
+        message.setQos(2);
+        try {
+            client.publish(topic, message);
+            fail("Message should not published");
+        } finally {
+            client.disconnect(100);
+        }
+    }
+
+    @Test(expected = MqttException.class)
+    public void missingPermissionRead() throws Exception {
+        server.start();
+
+        String broker = "tcp://" + BIND + ":" + SERVER_PORT;
+        String topic = "topicWrite";
+        String user = "admin";
+        String password = "password";
+
+        MqttClient client = connect(broker, user, password);
+
+        LOGGER.info("Subscribe to topic: {}", topic);
+        try {
+            client.subscribe(topic,
+                    (topic1, message) -> LOGGER.info("Received message {} for topic {}", message, topic1));
+            fail("Subscribe should fail");
+        } finally {
+            client.disconnect();
+        }
     }
 
     /**

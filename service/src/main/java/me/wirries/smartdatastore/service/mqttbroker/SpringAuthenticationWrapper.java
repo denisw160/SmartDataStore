@@ -13,8 +13,7 @@ import static me.wirries.smartdatastore.service.utils.AuthorityHelper.hasRole;
 
 
 /**
- * A wrapper for use the Spring {@link me.wirries.smartdatastore.service.service.UserService}
- * to check the authentication of the user.
+ * A wrapper for use the Spring {@link AuthenticationProvider} to check the authentication of the user.
  *
  * @author denisw
  * @version 1.0
