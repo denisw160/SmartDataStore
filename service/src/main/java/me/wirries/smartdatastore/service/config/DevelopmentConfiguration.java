@@ -56,6 +56,9 @@ public class DevelopmentConfiguration {
         LOGGER.info("Deleting all user");
         template.dropCollection(User.class);
 
+        LOGGER.info("Deleting all processed messages");
+        template.dropCollection(Processed.class);
+
         LOGGER.info("Deleting all messages");
         template.dropCollection(Message.class);
 

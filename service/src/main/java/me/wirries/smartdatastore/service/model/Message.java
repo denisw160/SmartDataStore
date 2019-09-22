@@ -87,9 +87,9 @@ public class Message {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Message user = (Message) o;
+        Message message = (Message) o;
         return new EqualsBuilder()
-                .append(id, user.id)
+                .append(id, message.id)
                 .isEquals();
     }
 

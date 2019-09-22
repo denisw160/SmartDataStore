@@ -38,6 +38,7 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
 
     protected void dropData() {
         getTemplate().dropCollection(User.class);
+        getTemplate().dropCollection(Processed.class);
         getTemplate().dropCollection(Message.class);
         getTemplate().dropCollection(MessageId.class);
     }

@@ -46,16 +46,6 @@ public class Role implements GrantedAuthority {
         return getName();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return new EqualsBuilder()
-                .append(name, role.name)
-                .isEquals();
-    }
-
     /**
      * Creates a new role with the given name.
      *
@@ -64,6 +54,16 @@ public class Role implements GrantedAuthority {
      */
     public static Role createRole(String name) {
         return new Role(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return new EqualsBuilder()
+                .append(name, role.name)
+                .isEquals();
     }
 
     @Override

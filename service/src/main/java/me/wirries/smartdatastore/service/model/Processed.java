@@ -5,33 +5,32 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 /**
- * This is the model for a {@link MessageId}. The messageId is used in the {@link Permission}
- * for controlling the access to the data.
+ * This is the model marks a {@link Message} as processed.
  *
  * @author denisw
  * @version 1.0
  * @since 22.09.19
  */
-@Document(collection = "messageId")
-public class MessageId {
+@Document(collection = "processed")
+public class Processed {
 
     @Id
     private String id;
 
-    @Indexed(unique = true)
-    private String name;
-    private String description;
+    @DBRef
+    @Indexed
+    private Message message;
 
-    private MessageType defaultType;
+    @Indexed
+    private String clientId;
 
     private Date created;
-    private Date updated;
-
 
     public String getId() {
         return id;
@@ -41,28 +40,20 @@ public class MessageId {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
-    public String getDescription() {
-        return description;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public MessageType getDefaultType() {
-        return defaultType;
-    }
-
-    public void setDefaultType(MessageType defaultType) {
-        this.defaultType = defaultType;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public Date getCreated() {
@@ -73,21 +64,13 @@ public class MessageId {
         this.created = created;
     }
 
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MessageId messageId = (MessageId) o;
+        Processed processed = (Processed) o;
         return new EqualsBuilder()
-                .append(id, messageId.id)
+                .append(id, processed.id)
                 .isEquals();
     }
 
@@ -102,11 +85,9 @@ public class MessageId {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("name", name)
-                .append("description", description)
-                .append("defaultType", defaultType)
+                .append("message", message)
+                .append("clientId", clientId)
                 .append("created", created)
-                .append("updated", updated)
                 .toString();
     }
 

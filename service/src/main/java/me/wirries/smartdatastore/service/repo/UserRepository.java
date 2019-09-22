@@ -3,6 +3,7 @@ package me.wirries.smartdatastore.service.repo;
 import me.wirries.smartdatastore.service.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * This repository handles the {@link User}s.
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.repository.Query;
  * @version 1.0
  * @since 08.09.19
  */
+@Transactional
 public interface UserRepository extends MongoRepository<User, String> {
 
     /**
