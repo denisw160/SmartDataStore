@@ -7,7 +7,7 @@ package me.wirries.smartdatastore.service.controller;
  * @version 1.0
  * @since 22.09.19
  */
-public class StartStopResponse<T> {
+public class MessagesResponse {
 
     // TODO Implement
 

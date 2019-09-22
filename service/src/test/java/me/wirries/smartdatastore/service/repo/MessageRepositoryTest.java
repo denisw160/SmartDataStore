@@ -8,6 +8,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.util.*;
 
@@ -83,7 +84,7 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
         Iterator<Message> iterator = byMessageId.iterator();
         for (int i = 0; i < 200; i++) {
             Message next = iterator.next();
-            assertEquals("{\"value\":" + i + "}", next.getPayload());
+            assertEquals("{\"value\":" + (199 - i) + "}", next.getPayload());
         }
     }
 
@@ -101,7 +102,8 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
         createData("test1", 100);
         createData("test2", 200);
 
-        List<Message> byMessageId = repository.findByMessageId(messageId.getId(), PageRequest.of(1, 20));
+        List<Message> byMessageId = repository.findByMessageId(messageId.getId(),
+                PageRequest.of(1, 20, new Sort(Sort.Direction.DESC, "created")));
         assertNotNull(byMessageId);
         assertEquals(20, byMessageId.size());
         Iterator<Message> iterator = byMessageId.iterator();
@@ -146,9 +148,9 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
         assertNotNull(byMessageId);
         assertEquals(100, byMessageId.size());
         Message m = byMessageId.get(0);
-        assertEquals("{\"value\":0}", m.getPayload());
-        m = byMessageId.get(99);
         assertEquals("{\"value\":297}", m.getPayload());
+        m = byMessageId.get(99);
+        assertEquals("{\"value\":0}", m.getPayload());
     }
 
     @Test
@@ -165,7 +167,8 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
         createData("test2", 300);
 
         List<Message> byMessageId = repository.findByMessageId(
-                messageId.getId(), messageId.getDefaultType(), PageRequest.of(1, 20));
+                messageId.getId(), messageId.getDefaultType(),
+                PageRequest.of(1, 20, new Sort(Sort.Direction.DESC, "created")));
         assertNotNull(byMessageId);
         assertEquals(20, byMessageId.size());
         Message m = byMessageId.get(0);

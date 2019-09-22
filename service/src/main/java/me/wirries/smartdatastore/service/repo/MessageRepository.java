@@ -4,6 +4,7 @@ import me.wirries.smartdatastore.service.model.Message;
 import me.wirries.smartdatastore.service.model.MessageType;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @param messageId UUID of the {@link me.wirries.smartdatastore.service.model.MessageId}
      * @return a List of {@link Message}s or an empty list, if not found
      */
-    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}}", sort = "{'created': -1}")
+    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}}", sort = "{'created': 1}")
     List<Message> findByMessageId(String messageId);
 
     /**
@@ -36,7 +37,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @param page      for scrolling over the dataset
      * @return a List of {@link Message}s or an empty list, if not found
      */
-    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}}", sort = "{'created': -1}")
+    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}}")
     List<Message> findByMessageId(String messageId, Pageable page);
 
     /**
@@ -46,7 +47,8 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @return a {@link Message} or null, if not found
      */
     default Message findLastByMessageId(String messageId) {
-        List<Message> results = findByMessageId(messageId, PageRequest.of(0, 1));
+        List<Message> results = findByMessageId(messageId,
+                PageRequest.of(0, 1, new Sort(Sort.Direction.DESC, "created")));
         return (!results.isEmpty()) ? results.get(0) : null;
     }
 
@@ -57,7 +59,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @param type      Type of the message
      * @return a List of {@link Message}s or an empty list, if not found
      */
-    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}, 'type': ?1}", sort = "{'created': -1}")
+    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}, 'type': ?1}", sort = "{'created': 1}")
     List<Message> findByMessageId(String messageId, MessageType type);
 
     /**
@@ -68,7 +70,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @param page      for scrolling over the dataset
      * @return a List of {@link Message}s or an empty list, if not found
      */
-    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}, 'type': ?1}", sort = "{'created': -1}")
+    @Query(value = "{'messageId.$id': {$regex: ?0, $options: 'i'}, 'type': ?1}")
     List<Message> findByMessageId(String messageId, MessageType type, Pageable page);
 
     /**
@@ -79,7 +81,8 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      * @return a {@link Message} or null, if not found
      */
     default Message findLastByMessageId(String messageId, MessageType type) {
-        List<Message> results = findByMessageId(messageId, type, PageRequest.of(0, 1));
+        List<Message> results = findByMessageId(messageId, type,
+                PageRequest.of(0, 1, new Sort(Sort.Direction.DESC, "created")));
         return (!results.isEmpty()) ? results.get(0) : null;
     }
 

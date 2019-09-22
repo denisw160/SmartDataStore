@@ -44,7 +44,7 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Get all users",
-            notes = "Return all users from the database."
+            notes = "Return all users from the database. Role ADMIN is needed."
     )
     @GetMapping("/user")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -63,7 +63,8 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Create or update a user",
-            notes = "Creates a new user in the database, if the user not exists. Otherwise the user is updated."
+            notes = "Creates a new user in the database, if the user not exists. Otherwise the user is updated." +
+                    "Role ADMIN is needed."
     )
     @PostMapping("/user")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -81,7 +82,7 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Delete an existing user",
-            notes = "Delete an existing user in the database."
+            notes = "Delete an existing user in the database. Role ADMIN is needed."
     )
     @DeleteMapping("/user")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -98,7 +99,7 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Get all routes",
-            notes = "Return all users from the database."
+            notes = "Return all users from the database. Role ADMIN is needed."
     )
     @GetMapping("/route")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -117,7 +118,8 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Create or update a route",
-            notes = "Creates a new route in the database, if the route not exists. Otherwise the route is updated."
+            notes = "Creates a new route in the database, if the route not exists. Otherwise the route is updated." +
+                    "Role ADMIN is needed."
     )
     @PostMapping("/route")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -135,7 +137,7 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Delete an existing route",
-            notes = "Delete an existing route in the database."
+            notes = "Delete an existing route in the database. Role ADMIN is needed."
     )
     @DeleteMapping("/route")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -153,11 +155,11 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Start an existing route",
-            notes = "Start an existing route in the system."
+            notes = "Start an existing route in the system. Role ADMIN is needed."
     )
     @GetMapping("/route/start/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public StartStopResponse<RouteResponse> startRoute(@PathVariable("id") String id) {
+    public StatusResponse<RouteResponse> startRoute(@PathVariable("id") String id) {
         LOGGER.debug("Start the route {}", id);
         // TODO implement the response and transform
         return null;
@@ -171,11 +173,11 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Stop an existing route",
-            notes = "Stop an existing route in the system."
+            notes = "Stop an existing route in the system. Role ADMIN is needed."
     )
     @GetMapping("/route/stop/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public StartStopResponse<RouteResponse> stopRoute(@PathVariable("id") String id) {
+    public StatusResponse<RouteResponse> stopRoute(@PathVariable("id") String id) {
         LOGGER.debug("Stop the route {}", id);
         // TODO implement the response and transform
         return null;
@@ -188,7 +190,7 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Get all messageIds",
-            notes = "Return all messageIds from the database."
+            notes = "Return all messageIds from the database. Role ADMIN is needed."
     )
     @GetMapping("/messageId")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -208,7 +210,7 @@ public class AdminController {
     @ApiOperation(
             value = "Create or update a messageId",
             notes = "Creates a new messageId in the database, if the messageId not exists. " +
-                    "Otherwise the messageId is updated."
+                    "Otherwise the messageId is updated. Role ADMIN is needed."
     )
     @PostMapping("/messageId")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -226,7 +228,8 @@ public class AdminController {
      */
     @ApiOperation(
             value = "Delete an existing messageId",
-            notes = "Delete an existing messageId in the database and remove all messages for this messageId."
+            notes = "Delete an existing messageId in the database and remove all messages for this messageId." +
+                    "Role ADMIN is needed."
     )
     @DeleteMapping("/messageId")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

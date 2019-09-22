@@ -17,12 +17,22 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController {
 
+    /**
+     * Return a Redirect to the SwaggerApi.
+     *
+     * @param response Redirect
+     */
     @GetMapping("/")
     public void indexRedirect(HttpServletResponse response) {
         response.setHeader("Location", "/swagger-ui.html");
         response.setStatus(HttpStatus.FOUND.value());
     }
 
+    /**
+     * Return a Redirect to the SwaggerApi.
+     *
+     * @param response Redirect
+     */
     @GetMapping("/api")
     public void swaggerRedirect(HttpServletResponse response) {
         response.setHeader("Location", "/swagger-ui.html");
