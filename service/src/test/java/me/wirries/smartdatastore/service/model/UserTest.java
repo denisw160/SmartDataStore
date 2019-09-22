@@ -88,13 +88,13 @@ public class UserTest {
         assertNull(user.getUpdated());
 
         List<Permission> permissionList = new ArrayList<>();
-        permissionList.add(Permission.createMessageIdPermission("messageId1", PermissionType.READ));
-        permissionList.add(Permission.createMessageIdPermission("messageId2", PermissionType.WRITE));
-        permissionList.add(Permission.createMessageIdPermission("messageId3", PermissionType.READWRITE));
+        permissionList.add(new Permission("messageId1", ResourceType.MESSAGE_ID, PermissionType.READ));
+        permissionList.add(new Permission("messageId2", ResourceType.MESSAGE_ID, PermissionType.WRITE));
+        permissionList.add(new Permission("messageId3", ResourceType.MESSAGE_ID, PermissionType.READWRITE));
 
         user.updatePermission(permissionList);
         assertNotNull(user.getPermissions());
-        assertEquals("[{\"messageId\":\"messageId1\",\"topic\":null,\"type\":\"READ\",\"resource\":\"WEB\"},{\"messageId\":\"messageId2\",\"topic\":null,\"type\":\"WRITE\",\"resource\":\"WEB\"},{\"messageId\":\"messageId3\",\"topic\":null,\"type\":\"READWRITE\",\"resource\":\"WEB\"}]", user.getPermissions());
+        assertEquals("[{\"id\":\"messageId1\",\"resource\":\"MESSAGE_ID\",\"permission\":\"READ\"},{\"id\":\"messageId2\",\"resource\":\"MESSAGE_ID\",\"permission\":\"WRITE\"},{\"id\":\"messageId3\",\"resource\":\"MESSAGE_ID\",\"permission\":\"READWRITE\"}]", user.getPermissions());
         assertNotNull(user.getUpdated());
     }
 
@@ -106,12 +106,18 @@ public class UserTest {
         List<Permission> permissionList = user.readPermissions();
         assertNotNull(permissionList);
         assertEquals(3, permissionList.size());
-        assertEquals("messageId1", permissionList.get(0).getMessageId());
-        assertEquals(PermissionType.READ, permissionList.get(0).getType());
-        assertEquals("messageId2", permissionList.get(1).getMessageId());
-        assertEquals(PermissionType.WRITE, permissionList.get(1).getType());
-        assertEquals("messageId3", permissionList.get(2).getMessageId());
-        assertEquals(PermissionType.READWRITE, permissionList.get(2).getType());
+
+        assertEquals("messageId1", permissionList.get(0).getId());
+        assertEquals(PermissionType.READ, permissionList.get(0).getPermission());
+        assertEquals(ResourceType.MESSAGE_ID, permissionList.get(0).getResource());
+
+        assertEquals("messageId2", permissionList.get(1).getId());
+        assertEquals(PermissionType.WRITE, permissionList.get(1).getPermission());
+        assertEquals(ResourceType.MESSAGE_ID, permissionList.get(1).getResource());
+
+        assertEquals("messageId3", permissionList.get(2).getId());
+        assertEquals(PermissionType.READWRITE, permissionList.get(2).getPermission());
+        assertEquals(ResourceType.MESSAGE_ID, permissionList.get(2).getResource());
     }
 
 }

@@ -32,8 +32,18 @@ public class AuthorityHelperTest {
 
     @Test
     public void hasRole() {
-        assertTrue(AuthorityHelper.hasRole("ROLE_ROLE1", authorities));
-        assertFalse(AuthorityHelper.hasRole("ROLE_UNKNOWN", authorities));
+        assertTrue(AuthorityHelper.hasRole(authorities, "ROLE_ROLE1"));
+        assertFalse(AuthorityHelper.hasRole(authorities, "ROLE_UNKNOWN"));
+    }
+
+    @Test
+    public void hasPermission() {
+        // TODO write test
+    }
+
+    @Test
+    public void findPermission() {
+        // TODO write test
     }
 
 }

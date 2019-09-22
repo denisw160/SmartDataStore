@@ -34,7 +34,7 @@ public class SpringAuthenticationWrapper implements IAuthenticator {
             Authentication authenticate = authenticationProvider.authenticate(authentication);
 
             LOGGER.info("Client login for clientId {} and username {} is authenticated", clientId, username);
-            return authenticate.isAuthenticated() && hasRole("ROLE_MQTT", authenticate.getAuthorities());
+            return authenticate.isAuthenticated() && hasRole(authenticate.getAuthorities(), "ROLE_MQTT");
         } catch (Exception e) {
             LOGGER.warn("Client login for clientId {} and username {} failed", clientId, username);
             LOGGER.debug("Exception during login", e);

@@ -47,9 +47,9 @@ public class UserServiceTest extends AbstractRepositoryTests {
         user.updateRoles(roleList);
 
         List<Permission> permissionList = new ArrayList<>();
-        permissionList.add(Permission.createMessageIdPermission("messageId1", PermissionType.READ));
-        permissionList.add(Permission.createMessageIdPermission("messageId2", PermissionType.WRITE));
-        permissionList.add(Permission.createMessageIdPermission("messageId3", PermissionType.READWRITE));
+        permissionList.add(new Permission("messageId1", ResourceType.MESSAGE_ID, PermissionType.READ));
+        permissionList.add(new Permission("messageId2", ResourceType.MESSAGE_ID, PermissionType.WRITE));
+        permissionList.add(new Permission("messageId3", ResourceType.MESSAGE_ID, PermissionType.READWRITE));
         user.updatePermission(permissionList);
 
         repository.save(user);

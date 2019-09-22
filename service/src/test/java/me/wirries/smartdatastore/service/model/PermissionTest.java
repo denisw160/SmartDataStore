@@ -20,42 +20,42 @@ public class PermissionTest {
 
     @Before
     public void setUp() {
-        read = Permission.createMessageIdPermission("id", PermissionType.READ);
-        write = Permission.createMessageIdPermission("id", PermissionType.WRITE);
-        readWrite = Permission.createMessageIdPermission("id", PermissionType.READWRITE);
+        read = new Permission("id", ResourceType.MESSAGE_ID, PermissionType.READ);
+        write = new Permission("id", ResourceType.MESSAGE_ID, PermissionType.WRITE);
+        readWrite = new Permission("id", ResourceType.MESSAGE_ID, PermissionType.READWRITE);
     }
 
     @Test
     public void isRead() {
-        assertEquals(ResourceType.WEB, read.getResource());
+        assertEquals(ResourceType.MESSAGE_ID, read.getResource());
 
-        assertTrue(read.isRead());
-        assertFalse(write.isRead());
-        assertTrue(readWrite.isRead());
+        assertTrue(read.canRead());
+        assertFalse(write.canRead());
+        assertTrue(readWrite.canRead());
     }
 
     @Test
     public void isWrite() {
-        assertFalse(read.isWrite());
-        assertTrue(write.isWrite());
-        assertTrue(readWrite.isWrite());
+        assertFalse(read.canWrite());
+        assertTrue(write.canWrite());
+        assertTrue(readWrite.canWrite());
     }
 
     @Test
     public void mqtt() {
-        read = Permission.createMqttTopicPermission("topic", PermissionType.READ);
-        write = Permission.createMqttTopicPermission("topic", PermissionType.WRITE);
-        readWrite = Permission.createMqttTopicPermission("topic", PermissionType.READWRITE);
+        read = new Permission("topic", ResourceType.MQTT_TOPIC, PermissionType.READ);
+        write = new Permission("topic", ResourceType.MQTT_TOPIC, PermissionType.WRITE);
+        readWrite = new Permission("topic", ResourceType.MQTT_TOPIC, PermissionType.READWRITE);
 
-        assertEquals(ResourceType.MQTT, read.getResource());
+        assertEquals(ResourceType.MQTT_TOPIC, read.getResource());
 
-        assertTrue(read.isRead());
-        assertFalse(write.isRead());
-        assertTrue(readWrite.isRead());
+        assertTrue(read.canRead());
+        assertFalse(write.canRead());
+        assertTrue(readWrite.canRead());
 
-        assertFalse(read.isWrite());
-        assertTrue(write.isWrite());
-        assertTrue(readWrite.isWrite());
+        assertFalse(read.canWrite());
+        assertTrue(write.canWrite());
+        assertTrue(readWrite.canWrite());
     }
 
 }

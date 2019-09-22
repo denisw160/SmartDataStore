@@ -56,13 +56,13 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
         user.updateRoles(roleList);
 
         List<Permission> permissionList = new ArrayList<>();
-        permissionList.add(Permission.createMessageIdPermission("messageIdRead", PermissionType.READ));
-        permissionList.add(Permission.createMessageIdPermission("messageIdWrite", PermissionType.WRITE));
-        permissionList.add(Permission.createMessageIdPermission("messageIdReadWrite", PermissionType.READWRITE));
+        permissionList.add(new Permission("messageIdRead", ResourceType.MESSAGE_ID, PermissionType.READ));
+        permissionList.add(new Permission("messageIdWrite", ResourceType.MESSAGE_ID, PermissionType.WRITE));
+        permissionList.add(new Permission("messageIdReadWrite", ResourceType.MESSAGE_ID, PermissionType.READWRITE));
 
-        permissionList.add(Permission.createMqttTopicPermission("topicRead", PermissionType.READ));
-        permissionList.add(Permission.createMqttTopicPermission("topicWrite", PermissionType.WRITE));
-        permissionList.add(Permission.createMqttTopicPermission("topicReadWrite", PermissionType.READWRITE));
+        permissionList.add(new Permission("topicRead", ResourceType.MQTT_TOPIC, PermissionType.READ));
+        permissionList.add(new Permission("topicWrite", ResourceType.MQTT_TOPIC, PermissionType.WRITE));
+        permissionList.add(new Permission("topicReadWrite", ResourceType.MQTT_TOPIC, PermissionType.READWRITE));
 
         user.updatePermission(permissionList);
         getTemplate().save(user);

@@ -75,10 +75,14 @@ public class DevelopmentConfiguration {
         user.setCreated(new Date());
 
         List<Role> roleList = new ArrayList<>();
+        roleList.add(new Role("ROLE_ADMIN"));
+        roleList.add(new Role("ROLE_MQTT"));
+        roleList.add(new Role("ROLE_REST"));
         user.updateRoles(roleList);
 
         List<Permission> permissionList = new ArrayList<>();
-        user.updatePermission(permissionList);
+        user.updatePermission(permissionList); // TODO add default permissions
+
         template.save(user);
     }
 

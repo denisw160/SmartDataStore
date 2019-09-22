@@ -12,11 +12,11 @@ public enum ResourceType {
     /**
      * Access via WEB.
      */
-    WEB,
+    MESSAGE_ID,
 
     /**
      * Access via MQTT.
      */
-    MQTT
+    MQTT_TOPIC
 
 }
