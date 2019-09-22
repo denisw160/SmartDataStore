@@ -1,9 +1,6 @@
 package me.wirries.smartdatastore.service;
 
-import me.wirries.smartdatastore.service.model.Permission;
-import me.wirries.smartdatastore.service.model.PermissionType;
-import me.wirries.smartdatastore.service.model.Role;
-import me.wirries.smartdatastore.service.model.User;
+import me.wirries.smartdatastore.service.model.*;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,17 +23,26 @@ public abstract class AbstractRepositoryTests extends AbstractApplicationTests {
     @Autowired
     private MongoTemplate template;
 
-    public MongoTemplate getTemplate() {
+    protected MongoTemplate getTemplate() {
         return template;
     }
 
     @Before
     public void setUp() throws Exception {
         // drop data
-        getTemplate().dropCollection(User.class);
+        dropData();
 
         // create data
+        createUsers();
+    }
 
+    protected void dropData() {
+        getTemplate().dropCollection(User.class);
+        getTemplate().dropCollection(Message.class);
+        getTemplate().dropCollection(MessageId.class);
+    }
+
+    protected void createUsers() throws Exception {
         LOGGER.debug("Creating admin user");
         User user = new User();
         user.setId(UUID.randomUUID().toString());

@@ -1,12 +1,11 @@
 package me.wirries.smartdatastore.service.config;
 
-import me.wirries.smartdatastore.service.model.Permission;
-import me.wirries.smartdatastore.service.model.Role;
-import me.wirries.smartdatastore.service.model.User;
-import me.wirries.smartdatastore.service.repo.UserRepository;
+import me.wirries.smartdatastore.service.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -28,21 +27,40 @@ public class DevelopmentConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DevelopmentConfiguration.class);
 
-    private UserRepository userRepository;
+    private MongoTemplate template;
 
-    public DevelopmentConfiguration(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    /**
+     * Constructor with AutoWiring dependencies.
+     *
+     * @param template {@link MongoTemplate}
+     */
+    @Autowired
+    public DevelopmentConfiguration(MongoTemplate template) {
+        this.template = template;
     }
 
+    /**
+     * Initialize the database.
+     *
+     * @throws Exception during initialize
+     */
     @PostConstruct
     public void init() throws Exception {
         dropCollections();
+
         createUser();
+        createDefaultMessageId();
     }
 
     private void dropCollections() {
         LOGGER.info("Deleting all user");
-        userRepository.deleteAll();
+        template.dropCollection(User.class);
+
+        LOGGER.info("Deleting all messages");
+        template.dropCollection(Message.class);
+
+        LOGGER.info("Deleting all messageId");
+        template.dropCollection(MessageId.class);
     }
 
     private void createUser() throws Exception {
@@ -58,7 +76,18 @@ public class DevelopmentConfiguration {
 
         List<Permission> permissionList = new ArrayList<>();
         user.updatePermission(permissionList);
-        userRepository.save(user);
+        template.save(user);
+    }
+
+    private void createDefaultMessageId() {
+        LOGGER.info("Creating default messageId");
+        MessageId messageId = new MessageId();
+        messageId.setId("d7d7ec0c-77ad-4cf5-95f1-2d52fd39d407");
+        messageId.setName("default");
+        messageId.setDescription("default messageId");
+        messageId.setDefaultType(MessageType.JSON);
+        messageId.setCreated(new Date());
+        messageId.setUpdated(new Date());
     }
 
 }

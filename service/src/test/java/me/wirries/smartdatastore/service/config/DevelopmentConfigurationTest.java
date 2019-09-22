@@ -1,10 +1,9 @@
 package me.wirries.smartdatastore.service.config;
 
 import me.wirries.smartdatastore.service.AbstractRepositoryTests;
+import me.wirries.smartdatastore.service.model.MessageId;
 import me.wirries.smartdatastore.service.model.User;
-import me.wirries.smartdatastore.service.repo.UserRepository;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Query;
 
 import static org.junit.Assert.assertEquals;
@@ -18,19 +17,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class DevelopmentConfigurationTest extends AbstractRepositoryTests {
 
-    @Autowired
-    private UserRepository userRepository;
-
     private DevelopmentConfiguration developmentConfiguration;
 
     @Override
     public void setUp() {
-        getTemplate().dropCollection(User.class);
-        developmentConfiguration = new DevelopmentConfiguration(userRepository);
+        dropData();
+        developmentConfiguration = new DevelopmentConfiguration(getTemplate());
     }
 
     @Test
     public void init() throws Exception {
+        assertEquals(0, getTemplate().count(new Query(), User.class));
+        assertEquals(0, getTemplate().count(new Query(), MessageId.class));
         assertEquals(0, getTemplate().count(new Query(), User.class));
         developmentConfiguration.init();
         assertEquals(1, getTemplate().count(new Query(), User.class));
