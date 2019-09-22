@@ -2,23 +2,14 @@ package me.wirries.smartdatastore.service.controller;
 
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import me.wirries.smartdatastore.service.model.LoginResult;
-import me.wirries.smartdatastore.service.model.User;
-import me.wirries.smartdatastore.service.repo.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
-import java.util.List;
-
 /**
- * This is the REST controller for the api of the coffee service.
- * It's provides the access to the sensor data and the configuration.
+ * This is the REST controller for the api of the SmartDataService.
+ * It's provides the access to the sensor data.
  *
  * @author denisw
  * @version 1.0
@@ -31,58 +22,6 @@ public class ApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiController.class);
 
-    @Autowired
-    private UserRepository userRepository;
-
-//    private SecurityConfiguration securityConfiguration;
-//
-//    private SensorDataRepository dataRepository;
-//    private ConfigRepository configRepository;
-
-//    /**
-//     * Constructor with AutoWiring the dependencies.
-//     *
-//     * @param securityConfiguration Configuration of the WebSecurity
-//     * @param dataRepository        Repository for the coffee sensor data
-//     * @param configRepository      Repository for the config data
-//     */
-//    @Autowired
-//    public ApiController(SecurityConfiguration securityConfiguration,
-//                         SensorDataRepository dataRepository,
-//                         ConfigRepository configRepository) {
-//        this.securityConfiguration = securityConfiguration;
-//        this.dataRepository = dataRepository;
-//        this.configRepository = configRepository;
-//    }
-
-    /**
-     * This simple method return the result of the login. If the the user is authenticated,
-     * it return success=true.
-     *
-     * @param principal {@link Principal} of the current login
-     * @return result of the login
-     */
-    @ApiOperation(
-            value = "Perform the login",
-            notes = "Return the state of the login. If the login ist success, the field success is true."
-    )
-    @GetMapping("/login")
-    public LoginResult login(Principal principal) {
-        if (principal == null) {
-            return new LoginResult("notAuthenticated", false);
-        }
-
-        return new LoginResult(principal.getName(), true);
-    }
-
-    @ApiOperation(
-            value = "Get all users",
-            notes = "Return all users from the database."
-    )
-    @GetMapping("/users")
-    public List<User> users() {
-        return userRepository.findAll();
-    }
 
 //    /**
 //     * Return the status of the coffee sensors.

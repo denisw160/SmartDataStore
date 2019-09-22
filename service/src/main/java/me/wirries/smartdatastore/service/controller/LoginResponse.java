@@ -1,4 +1,4 @@
-package me.wirries.smartdatastore.service.model;
+package me.wirries.smartdatastore.service.controller;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @since 08.09.2019
  */
-public class LoginResult {
+public class LoginResponse {
 
     private String user;
     private boolean success;
@@ -20,7 +20,7 @@ public class LoginResult {
      * @param user    user
      * @param success login successful
      */
-    public LoginResult(String user, boolean success) {
+    public LoginResponse(String user, boolean success) {
         this.user = user;
         this.success = success;
     }

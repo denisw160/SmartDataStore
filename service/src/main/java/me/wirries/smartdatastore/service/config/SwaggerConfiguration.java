@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
                 .ignoredParameterTypes(Principal.class)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/api/*"))
+                .paths(PathSelectors.ant("/api/**/*"))
                 .build()
                 .apiInfo(apiInfo());
     }
