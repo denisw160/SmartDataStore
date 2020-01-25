@@ -11,7 +11,7 @@
 #  - setup the basehref to /yourPath/ in your Angular app
 #
 
-NAME=datastore-app
+NAME=smartdatastore-app
 TAG=latest
 
 BASE_HREF=/
@@ -29,6 +29,6 @@ echo Building the image
 docker build --build-arg BASE_HREF=$BASE_HREF -t $NAME:$TAG .
 
 # Running the container
-# Container needs the datastore-service as linked container with name apiserver
+# Container needs the smartdatastore-service as linked container with name apiserver
 #echo Running the container on port 8888
-#docker run --rm -it --name datastore-app --link datastore-service:apiserver -p 8888:80 $NAME:$TAG
+#docker run --rm -it --name smartdatastore-app --link smartdatastore-service:apiserver -p 8888:80 $NAME:$TAG

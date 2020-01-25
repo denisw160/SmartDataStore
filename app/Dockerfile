@@ -28,7 +28,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the files from builder
-COPY --from=builder /ng-app/dist/datastore-app /usr/share/nginx/html
+COPY --from=builder /ng-app/dist/smartdatastore-app /usr/share/nginx/html
 
 # Copy run script
 COPY docker_entrypoint.sh /entrypoint.sh
