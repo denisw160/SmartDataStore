@@ -1,0 +1,11 @@
+/**
+ * This fills the remaining space, by using flexbox.
+ * Every toolbar row uses a flexbox row layout.
+ */
+.filler {
+  flex: 1 1 auto;
+}
+
+.space-right {
+  margin-right: 20px;
+}
