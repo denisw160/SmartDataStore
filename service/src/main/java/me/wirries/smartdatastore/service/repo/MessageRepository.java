@@ -48,7 +48,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      */
     default Message findLastByMessageId(String messageId) {
         List<Message> results = findByMessageId(messageId,
-                PageRequest.of(0, 1, new Sort(Sort.Direction.DESC, "created")));
+                PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "created")));
         return (!results.isEmpty()) ? results.get(0) : null;
     }
 
@@ -82,7 +82,7 @@ public interface MessageRepository extends MongoRepository<Message, String> {
      */
     default Message findLastByMessageId(String messageId, MessageType type) {
         List<Message> results = findByMessageId(messageId, type,
-                PageRequest.of(0, 1, new Sort(Sort.Direction.DESC, "created")));
+                PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "created")));
         return (!results.isEmpty()) ? results.get(0) : null;
     }
 

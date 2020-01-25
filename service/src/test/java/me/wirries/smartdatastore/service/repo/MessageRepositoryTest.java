@@ -103,7 +103,7 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
         createData("test2", 200);
 
         List<Message> byMessageId = repository.findByMessageId(messageId.getId(),
-                PageRequest.of(1, 20, new Sort(Sort.Direction.DESC, "created")));
+                PageRequest.of(1, 20, Sort.by(Sort.Direction.DESC, "created")));
         assertNotNull(byMessageId);
         assertEquals(20, byMessageId.size());
         Iterator<Message> iterator = byMessageId.iterator();
@@ -168,7 +168,7 @@ public class MessageRepositoryTest extends AbstractRepositoryTests {
 
         List<Message> byMessageId = repository.findByMessageId(
                 messageId.getId(), messageId.getDefaultType(),
-                PageRequest.of(1, 20, new Sort(Sort.Direction.DESC, "created")));
+                PageRequest.of(1, 20, Sort.by(Sort.Direction.DESC, "created")));
         assertNotNull(byMessageId);
         assertEquals(20, byMessageId.size());
         Message m = byMessageId.get(0);
