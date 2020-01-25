@@ -6,4 +6,4 @@
 echo Starting SmartDataStoreService ...
 
 # Starting the service
-java -jar target/datastore-service.jar
+java -jar target/smartdatastore-service.jar

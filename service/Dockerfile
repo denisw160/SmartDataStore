@@ -23,7 +23,7 @@ EXPOSE 8080
 # Parameter for the execution
 ENV DB_HOST=db
 ENV DB_PORT=27017
-ENV DATABASE=datastore
+ENV DATABASE=smartdatastore
 ENV MQTT_URL=tcp://mqtt:1883
 ENV MQTT_USER=
 ENV MQTT_PASSWORD=

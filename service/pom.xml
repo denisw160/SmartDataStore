@@ -14,7 +14,7 @@
 
     <!-- Project -->
     <groupId>me.wirries.smartdatastore</groupId>
-    <artifactId>datastore-service</artifactId>
+    <artifactId>smartdatastore-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <!-- Description -->

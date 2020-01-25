@@ -40,4 +40,4 @@ if [ ! -z "$LOG_SESSIONS" ]; then
 fi
 
 echo "Starting parameters: $PARAMS"
-/usr/bin/java -jar datastore-service.jar $PARAMS
+/usr/bin/java -jar smartdatastore-service.jar $PARAMS

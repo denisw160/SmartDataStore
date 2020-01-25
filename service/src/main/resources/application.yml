@@ -13,7 +13,7 @@ spring:
     timeout: 1m
 
 # Logging - alternative you can use logback with log rotation
-logging.file: datastore-service.log
+logging.file: smartdatastore-service.log
 logging:
   file:
     max-size: 5MB
