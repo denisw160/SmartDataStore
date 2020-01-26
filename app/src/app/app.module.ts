@@ -2,10 +2,13 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {MatGridListModule} from '@angular/material';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
 import {CoreModule} from './core/core.module';
+import {TileModule} from './tile/tile.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {UsersComponent} from './users/users.component';
 
@@ -18,8 +21,10 @@ import {UsersComponent} from './users/users.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatGridListModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    TileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
