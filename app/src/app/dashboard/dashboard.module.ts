@@ -1,23 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {MatGridListModule} from '@angular/material/grid-list';
-
 import {CoreModule} from '../core/core.module';
 
-import {TemplateSmallComponent} from './components/template-small/template-small.component';
-import {TemplateMediumComponent} from './components/template-medium/template-medium.component';
 import {TemplateBigComponent} from './components/template-big/template-big.component';
+import {TemplateMediumComponent} from './components/template-medium/template-medium.component';
+import {TemplateSmallComponent} from './components/template-small/template-small.component';
+
 
 @NgModule({
   declarations: [
-    TemplateSmallComponent,
+    TemplateBigComponent,
     TemplateMediumComponent,
-    TemplateBigComponent
+    TemplateSmallComponent
   ],
   imports: [
     CommonModule,
-    MatGridListModule,
     CoreModule
   ],
   exports: [
@@ -26,5 +24,5 @@ import {TemplateBigComponent} from './components/template-big/template-big.compo
     TemplateBigComponent
   ]
 })
-export class TileModule {
+export class DashboardModule {
 }

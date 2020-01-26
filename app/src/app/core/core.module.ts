@@ -9,21 +9,20 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 
-import {LayoutComponent} from './components/layout/layout.component';
-import {HeaderComponent} from './components/header/header.component';
-import {FooterComponent} from './components/footer/footer.component';
-import {LoginComponent} from './components/login/login.component';
-import {LoggingService} from './service/logging.service';
 import {BackgroundComponent} from './components/background/background.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {HeaderComponent} from './components/header/header.component';
+import {LayoutComponent} from './components/layout/layout.component';
+
+import {LoggingService} from './service/logging.service';
 
 
 @NgModule({
   declarations: [
-    LayoutComponent,
-    HeaderComponent,
+    BackgroundComponent,
     FooterComponent,
-    LoginComponent,
-    BackgroundComponent
+    HeaderComponent,
+    LayoutComponent
   ],
   imports: [
     CommonModule,
