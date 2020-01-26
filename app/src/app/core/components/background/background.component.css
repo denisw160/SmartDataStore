@@ -1,0 +1,81 @@
+/* *** Show waves on bottom of the page *** */
+
+.waves {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 219px;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  height: 219px;
+  width: 200%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+
+.waveTop {
+  background-size: 50% 100px;
+  background-image: url('/assets/wave-top.png');
+}
+
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.waveBackgroundTop {
+  z-index: 15;
+  opacity: 0.05;
+}
+
+.waveMiddle {
+  background-size: 50% 120px;
+  background-image: url('/assets/wave-mid.png');
+}
+
+.waveAnimation .waveMiddle {
+  animation: move_wave 10s linear infinite;
+}
+
+.waveBackgroundMiddle {
+  z-index: 10;
+  opacity: 0.1;
+}
+
+.waveBottom {
+  background-size: 50% 100px;
+  background-image: url('/assets/wave-bot.png');
+}
+
+.waveAnimation .waveBottom {
+  animation: move_wave 15s linear infinite;
+}
+
+.waveBackgroundBottom {
+  z-index: 5;
+  opacity: 0.2;
+}
+
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1)
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.55)
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1)
+  }
+}

@@ -14,6 +14,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {LoginComponent} from './components/login/login.component';
 import {LoggingService} from './service/logging.service';
+import {BackgroundComponent} from './components/background/background.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {LoggingService} from './service/logging.service';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    BackgroundComponent
   ],
   imports: [
     CommonModule,
