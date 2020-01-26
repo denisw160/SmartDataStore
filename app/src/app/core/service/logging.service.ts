@@ -137,8 +137,12 @@ export class LoggingService {
         console.error(value);
       } else if (level === LogLevel.Warn) {
         console.warn(value);
+      } else if (level === LogLevel.Debug) {
+        // tslint:disable-next-line:no-console
+        console.debug(value);
       } else {
-        console.log(value);
+        // tslint:disable-next-line:no-console
+        console.info(value);
       }
     }
   }

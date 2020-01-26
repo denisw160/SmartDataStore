@@ -7,11 +7,13 @@ import {AppComponent} from './app.component';
 
 import {CoreModule} from './core/core.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {UsersComponent} from './users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

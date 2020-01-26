@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 import {LoggingService} from '../../service/logging.service';
 
@@ -10,18 +10,28 @@ import {LoggingService} from '../../service/logging.service';
 })
 export class HeaderComponent implements OnInit {
 
+  /**
+   * Title of the current page
+   */
+  title: string;
+
   constructor(private router: Router, private logger: LoggingService) {
   }
 
   ngOnInit() {
-  }
-
-  /**
-   * Navigates to the given link.
-   * @param routerLink link
-   */
-  navigateTo(routerLink: string) {
-    this.router.navigateByUrl(routerLink).then(r => this.logger.debug('navigateTo is success: ' + r));
+    this.logger.debug('Init event handing of current route');
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        const event: NavigationEnd = e;
+        this.router.config.filter(element => {
+          const path = '/' + element.path;
+          if (path === event.urlAfterRedirects && element.data) {
+            this.logger.debug('Found router config for ' + path + ': title ' + element.data.title);
+            this.title = element.data.title;
+          }
+        });
+      }
+    });
   }
 
 }

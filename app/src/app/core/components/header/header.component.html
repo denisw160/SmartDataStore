@@ -1,32 +1,4 @@
-<!-- Header-Toolbar -->
-<div style="height: 100vh;">
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <!-- Link to home -->
-      <button mat-icon-button (click)="navigateTo('/');">
-        <mat-icon>cloud_circle</mat-icon>
-      </button>
-      <!-- Application title -->
-      <span>SmartDataStore</span>
-      <!-- This fills the remaining space of the current row -->
-      <span class="filler"></span>
-      <!-- Notifications / Alerts -->
-      <!-- TODO show open alerts -->
-      <button mat-icon-button (click)="navigateTo('/alerts');" class="space-right">
-        <mat-icon matBadge="0" matBadgeColor="accent"> notifications</mat-icon>
-      </button>
-      <!-- User management -->
-      <!-- TODO show only for admin -->
-      <button mat-icon-button (click)="navigateTo('/users');">
-        <mat-icon>people</mat-icon>
-      </button>
-      <!-- User profile -->
-      <button mat-icon-button (click)="navigateTo('/profile');">
-        <mat-icon>person</mat-icon>
-      </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<!-- The header for the content page -->
+<div class="header">
+  <a routerLink="/">Home</a> > {{title}}
 </div>
-
-<!-- TODO add responsive design-->
-<!-- TODO add beta banner -->
