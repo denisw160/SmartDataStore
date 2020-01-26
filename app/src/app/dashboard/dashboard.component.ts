@@ -7,10 +7,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  breakpoint: number;
+
   constructor() {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
   }
 
 }
