@@ -11,3 +11,13 @@
   margin-right: auto;
   border-bottom: 2px solid #880E4F;
 }
+
+/**
+ * This class set the beta banner in the right upper corner.
+ */
+.beta-banner {
+  width: 64px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
