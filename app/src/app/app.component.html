@@ -1,4 +1,17 @@
-<!-- Import the layout of the application -->
-<app-layout></app-layout>
+<!-- Living background -->
+<app-background></app-background>
 
-<!-- TODO if not authenticated, show login -->
+<!-- Bootstrap layout -->
+<div class="container">
+  <!-- Navbar -->
+  <app-navbar></app-navbar>
+
+  <!-- Header with breadcrumb -->
+  <app-header></app-header>
+
+  <!-- Content of the page -->
+  <router-outlet></router-outlet>
+
+  <!-- Layout -->
+  <app-footer></app-footer>
+</div>

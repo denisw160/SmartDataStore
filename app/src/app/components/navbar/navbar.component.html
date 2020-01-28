@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark rounded">
+
+  <!-- Brand -->
+  <a class="navbar-brand" routerLink="/">
+    <img src="assets/logo-32.png" width="28" height="28" alt="" style="margin-right: 5px;">
+    <span class="align-middle">SmartDataStore</span>
+  </a>
+
+  <!-- Collapse Navbar on smaller screens -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavBar"
+          aria-controls="appNavBar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="appNavBar" class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <!-- Notifications / Alerts -->
+        <!-- TODO show open alerts (badge) -->
+        <a class="nav-link" (click)="navigateTo('/alerts');">
+          <i class="fa fa-bell d-none d-md-block" aria-hidden="true">
+            <sup><span class="badge badge-danger">0</span></sup>
+          </i>
+          <div class="d-sm-block d-md-none">Alerts</div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- User management -->
+        <!-- TODO show only for admin -->
+        <a class="nav-link" (click)="navigateTo('/users');">
+          <i class="fa fa-users d-none d-md-block" aria-hidden="true"></i>
+          <div class="d-sm-block d-md-none">Users</div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- User profile -->
+        <a class="nav-link" (click)="navigateTo('/profile');">
+          <i class="fa fa-user d-none d-md-block" aria-hidden="true"></i>
+          <div class="d-sm-block d-md-none">Profile</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
